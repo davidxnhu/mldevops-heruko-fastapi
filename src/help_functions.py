@@ -135,7 +135,7 @@ def compute_model_metrics(y, preds):
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
 
-    return precision, recall, fbeta
+    return round(precision,2), round(recall,2), round(fbeta,2)
 
 def inference(model, X):
     """ Run model inferences and return the predictions.
