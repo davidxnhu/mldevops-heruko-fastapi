@@ -32,9 +32,9 @@ jobs:
           aws-region: us-east-1
       - name: Setup DVC
         uses: iterative/setup-dvc@v1
-      - name: Pull data from DVC
-        run: dvc pull data -R
+      - name: Pull from DVC
+        run: dvc pull 
       - name: Run Flake8
         run: flake8 --exclude ./sanitycheck.py
       - name: Run pytest
-        run: pytest --ignore api_server_test.py
+        run: pytest
