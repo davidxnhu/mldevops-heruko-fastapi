@@ -95,3 +95,44 @@ def test_inference():
     pred = help_functions.inference(model, X)
     y = lb.inverse_transform(pred)[0]
     assert y == ">50K"
+
+def test_inference_below():
+    """
+    Check inference performance for below 50K
+    """
+    model = load("model/model.joblib")
+    encoder = load("model/encoder.joblib")
+    lb = load("model/lb.joblib")
+
+    array = np.array([[
+                     19,
+                     "Private",
+                     "HS-grad",
+                     "Never-married",
+                     "Own-child",
+                     "Husband",
+                     "Black",
+                     "Male",
+                     40,
+                     "United-States"
+                     ]])
+    df_temp = DataFrame(data=array, columns=[
+        "age",
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "hours-per-week",
+        "native-country",
+    ])
+
+    X, _, _, _ = help_functions.process_data(
+                df_temp,
+                categorical_features=help_functions.get_cat_features(),
+                encoder=encoder, lb=lb, training=False)
+    pred = help_functions.inference(model, X)
+    y = lb.inverse_transform(pred)[0]
+    assert y == "<=50K"
