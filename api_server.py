@@ -7,6 +7,7 @@ import src.help_functions
 from pandas.core.frame import DataFrame
 import numpy as np
 
+
 class User(BaseModel):
     age: int
     workclass: Literal[
