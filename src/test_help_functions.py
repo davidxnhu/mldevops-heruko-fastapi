@@ -96,6 +96,7 @@ def test_inference():
     y = lb.inverse_transform(pred)[0]
     assert y == ">50K"
 
+
 def test_inference_below():
     """
     Check inference performance for below 50K
