@@ -6,3 +6,4 @@ requests
 fastapi==0.63.0
 uvicorn
 gunicorn
+python==3.8.13
