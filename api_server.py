@@ -48,6 +48,7 @@ class User(BaseModel):
 
 
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("pip install 'dvc[s3]'")
     os.system("dvc config core.no_scm true")
     if os.system("dvc pull") != 0:
         exit("dvc pull failed")
