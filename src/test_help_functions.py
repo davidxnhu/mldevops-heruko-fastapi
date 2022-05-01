@@ -8,6 +8,7 @@ import pytest
 import help_functions
 from joblib import load
 
+
 @pytest.fixture
 def data():
     """
@@ -31,9 +32,10 @@ def test_process_data(data):
 
     assert len(X_test) == len(y_test)
 
+
 def test_process_encoder(data):
     """
-    Check data processing have the same params with the saved encoder and lb 
+    Check data processing have the same params with the saved encoder and lb
     """
     encoder_test = load("model/encoder.joblib")
     lb_test = load("model/lb.joblib")
@@ -50,6 +52,7 @@ def test_process_encoder(data):
 
     assert encoder.get_params() == encoder_test.get_params()
     assert lb.get_params() == lb_test.get_params()
+
 
 def test_inference():
     """

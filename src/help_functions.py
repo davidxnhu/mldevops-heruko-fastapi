@@ -11,6 +11,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
+
 def get_cat_features():
     """ Return feature categories
     """
@@ -92,6 +93,7 @@ def process_data(
 
     return X, y, encoder, lb
 
+
 def train_model(X_train, y_train):
     """
     Trains a machine learning model and returns it.
@@ -116,6 +118,7 @@ def train_model(X_train, y_train):
 
     return model
 
+
 def compute_model_metrics(y, preds):
     """
     Validates the trained machine learning model using precision, recall, and F1.
@@ -135,7 +138,8 @@ def compute_model_metrics(y, preds):
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
 
-    return round(precision,2), round(recall,2), round(fbeta,2)
+    return round(precision, 2), round(recall, 2), round(fbeta, 2)
+
 
 def inference(model, X):
     """ Run model inferences and return the predictions.
@@ -153,4 +157,3 @@ def inference(model, X):
     y_preds = model.predict(X)
 
     return y_preds
-

@@ -15,11 +15,13 @@ def data():
     df = basic_cleaning.__clean_dataset(df)
     return df
 
+
 def test_number_rows(data):
     """
     Data rows must be larger than zero
     """
     assert data.shape[0] > 0
+
 
 def test_null(data):
     """
@@ -33,4 +35,3 @@ def test_question_mark(data):
     Data is assumed to have no question marks value
     """
     assert '?' not in data.values
-

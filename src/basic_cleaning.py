@@ -11,13 +11,14 @@ def __clean_dataset(df):
     df.replace({'?': None}, inplace=True)
     df.dropna(inplace=True)
 
-    #not used in ML
+    # not used in ML
     df.drop("fnlgt", axis="columns", inplace=True)
     df.drop("education-num", axis="columns", inplace=True)
     df.drop("capital-gain", axis="columns", inplace=True)
     df.drop("capital-loss", axis="columns", inplace=True)
 
     return df
+
 
 def execute_cleaning():
     """
