@@ -23,7 +23,8 @@ def test_get(client):
 
 def test_get_malformed(client):
     r = client.get("/wrong_url")
-    assert r.status_code != 200
+    assert r.status_code == 404
+    assert r.json() == {"detail": "Not Found"}
 
 
 def test_post_above(client):
@@ -65,12 +66,25 @@ def test_post_malformed(client):
         "age": 32,
         "workclass": "Private",
         "education": "Some-college",
-        "maritalStatus": "ERROR",
+        "maritalStatus": "Never-married",
         "occupation": "Exec-managerial",
         "relationship": "Husband",
         "race": "Black",
-        "sex": "Male",
+        "sex": "ERROR",
         "hoursPerWeek": 60,
         "nativeCountry": "United-States"
     })
     assert r.status_code == 422
+    assert r.json() == {
+        'detail': [
+            {
+                'ctx': {
+                    'given': 'ERROR',
+                    'permitted': [
+                        'Male',
+                        'Female']},
+                'loc': [
+                    'body',
+                    'sex'],
+                'msg': "unexpected value; permitted: 'Male', 'Female'",
+                'type': 'value_error.const'}]}
